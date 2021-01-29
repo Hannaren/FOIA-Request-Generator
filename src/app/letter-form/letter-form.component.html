@@ -1,0 +1,119 @@
+<html>
+<head>
+  <title>Form Example</title>
+</head>
+<body>
+  <form [formGroup]="letterForm">
+    <div>
+      <h3>Letter Setup</h3>
+      <label for="name">
+        Name
+      </label>
+      <br />
+      <input type="text" id="name" formControlName="name" placeholder="Jane Doe">
+    </div>
+    <div>
+      <label>
+        Agency
+      </label>
+      <br />
+      <input type="text" formControlName="agency" placeholder="Department of Labor" />
+    </div>
+
+    <div formGroupName="contactAddress">
+      <h4>Address</h4>
+      <label>
+        Street
+      </label>
+      <br />
+      <input type="text" formControlName="street" placeholder="555 Easy St.">
+      <br />
+      <label>
+        City
+      </label>
+      <br />
+      <input type="text" formControlName="city" placeholder="Kansas City">
+      <br />
+      <label>
+        State
+      </label>
+      <br />
+      <input type="text" formControlName="state" placeholder="Missouri">
+      <br />
+      <label>
+        Zip Code
+      </label>
+      <br />
+      <input type="text" formControlName="zip" placeholder="01234">
+    </div>
+
+    <div>
+      <h3>Request Body</h3>
+      <p>This is a request for records under the Missouri Sunshine Law, Chapter 610, Revised Statutes of Missouri. I request that you make available to me all records that relate to: </p>
+
+      <textarea class="text-area" formControlName="requestTextArea" placeholder="Budget outlines spanning previous 5 years."></textarea>
+
+      <p>I request that the records responsive to my request be copied and sent to me electronically at the following email address:</p>
+
+      <input type="text" formControlName="yourEmail" placeholder="you@email.com">
+
+      <p>I request that all fees for locating and copying the records be waived. The information I obtain through this request will be used to: </p>
+
+      <textarea class="text-area" formControlName="feeTextArea" placeholder="Share public information with viewers of KSHB/41 Action News shows."></textarea>
+
+      <p>Please let me know in advance of any search or copying if the fees will exceed $</p>
+
+      <input type="text" formControlName="fee" placeholder="100">
+
+      <p>If portions of the requested records are closed, please segregate the closed portions and provide me with the rest of the records.</p>
+    </div>
+
+    <div>
+      <h3>Your Contact Information</h3>
+      <label>
+        Name
+      </label>
+      <br />
+      <input type="text" formControlName="yourName" placeholder="John Smith">
+      <br />
+      <label>
+        Phone Number
+      </label>
+      <br />
+      <input type="text" formControlName="yourPhone" placeholder="816-555-5555" />
+      <div formGroupName="yourAddress">
+        <h4>Address</h4>
+        <label>
+          Street
+        </label>
+        <br />
+        <input type="text" formControlName="street" placeholder="555 Easy St.">
+        <br />
+        <label>
+          City
+        </label>
+        <br />
+        <input type="text" formControlName="city" placeholder="Kansas City">
+        <br />
+        <label>
+          State
+        </label>
+        <br />
+        <input type="text" formControlName="state" placeholder="Missouri">
+        <br />
+        <label>
+          Zip Code
+        </label>
+        <br />
+        <input type="text" formControlName="zip" placeholder="01234">
+      </div>
+    </div>
+
+
+
+  </form>
+  <p>
+    Form Value: {{ letterForm.value | json }}
+  </p>
+</body>
+</html>
