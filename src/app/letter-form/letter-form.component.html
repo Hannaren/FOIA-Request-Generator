@@ -103,6 +103,9 @@
     <div>{{ model.yourAddress }}</div>
     <div>{{ model.yourPhone }}</div>
     <div>{{ model.yourEmail }}</div>
+
+    <button type="button" class="btn btn-default" (click)="newLetter(); letterForm.reset(); submitted=false">New Letter</button>
+
   </div>
 
 </body>

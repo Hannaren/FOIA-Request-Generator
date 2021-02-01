@@ -17,6 +17,10 @@ export class LetterFormComponent {
 
   onSubmit() { this.submitted = true; }
 
+  newLetter() {
+    this.model = new Letter('', '', '', '', '', '', 0, '', '', '',);
+  }
+
   get diagnostic() { return JSON.stringify(this.model); }
 
   /*
