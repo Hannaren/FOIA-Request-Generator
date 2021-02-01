@@ -1,119 +1,109 @@
 <html>
-<head>
-  <title>Form Example</title>
-</head>
+<head></head>
 <body>
-  <form [formGroup]="letterForm">
-    <div>
-      <h3>Letter Setup</h3>
-      <label for="name">
-        Name
-      </label>
-      <br />
-      <input type="text" id="name" formControlName="name" placeholder="Jane Doe">
-    </div>
-    <div>
-      <label>
-        Agency
-      </label>
-      <br />
-      <input type="text" formControlName="agency" placeholder="Department of Labor" />
-    </div>
-
-    <div formGroupName="contactAddress">
-      <h4>Address</h4>
-      <label>
-        Street
-      </label>
-      <br />
-      <input type="text" formControlName="street" placeholder="555 Easy St.">
-      <br />
-      <label>
-        City
-      </label>
-      <br />
-      <input type="text" formControlName="city" placeholder="Kansas City">
-      <br />
-      <label>
-        State
-      </label>
-      <br />
-      <input type="text" formControlName="state" placeholder="Missouri">
-      <br />
-      <label>
-        Zip Code
-      </label>
-      <br />
-      <input type="text" formControlName="zip" placeholder="01234">
-    </div>
-
-    <div>
-      <h3>Request Body</h3>
-      <p>This is a request for records under the Missouri Sunshine Law, Chapter 610, Revised Statutes of Missouri. I request that you make available to me all records that relate to: </p>
-
-      <textarea class="text-area" formControlName="requestTextArea" placeholder="Budget outlines spanning previous 5 years."></textarea>
-
-      <p>I request that the records responsive to my request be copied and sent to me electronically at the following email address:</p>
-
-      <input type="text" formControlName="yourEmail" placeholder="you@email.com">
-
-      <p>I request that all fees for locating and copying the records be waived. The information I obtain through this request will be used to: </p>
-
-      <textarea class="text-area" formControlName="feeTextArea" placeholder="Share public information with viewers of KSHB/41 Action News shows."></textarea>
-
-      <p>Please let me know in advance of any search or copying if the fees will exceed $</p>
-
-      <input type="text" formControlName="fee" placeholder="100">
-
-      <p>If portions of the requested records are closed, please segregate the closed portions and provide me with the rest of the records.</p>
-    </div>
-
-    <div>
-      <h3>Your Contact Information</h3>
-      <label>
-        Name
-      </label>
-      <br />
-      <input type="text" formControlName="yourName" placeholder="John Smith">
-      <br />
-      <label>
-        Phone Number
-      </label>
-      <br />
-      <input type="text" formControlName="yourPhone" placeholder="816-555-5555" />
-      <div formGroupName="yourAddress">
-        <h4>Address</h4>
-        <label>
-          Street
-        </label>
-        <br />
-        <input type="text" formControlName="street" placeholder="555 Easy St.">
-        <br />
-        <label>
-          City
-        </label>
-        <br />
-        <input type="text" formControlName="city" placeholder="Kansas City">
-        <br />
-        <label>
-          State
-        </label>
-        <br />
-        <input type="text" formControlName="state" placeholder="Missouri">
-        <br />
-        <label>
-          Zip Code
-        </label>
-        <br />
-        <input type="text" formControlName="zip" placeholder="01234">
+  <div [hidden]="submitted">
+    <form (ngSubmit)="onSubmit()" #letterForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name"
+               required
+               [(ngModel)]="model.name" name="name" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Name is required!
+        </div>
       </div>
-    </div>
 
+      <div class="form-group">
+        <label for="agency">Agency</label>
+        <input type="text" class="form-control" id="agency"
+               required
+               [(ngModel)]="model.agency" name="agency">
+      </div>
 
+      <div class="form-group">
+        <label for="contactAddress">Address</label>
+        <input type="text" class="form-control" id="contactAddress"
+               required
+               [(ngModel)]="model.contactAddress" name="contactAddress">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Address is required!
+        </div>
+      </div>
 
-  </form>
-  <p>
-    Form Value: {{ letterForm.value | json }}
-  </p>
+      <div class="form-group">
+        <label for="requestTextArea">Request</label>
+        <textarea class="form-control" id="requestTextArea"
+                  required [(ngModel)]="model.requestTextArea" name="requestTextArea">
+      </textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="yourEmail">Your Email</label>
+        <input type="text" class="form-control" id="yourEmail"
+               required
+               [(ngModel)]="model.yourEmail" name="yourEmail">
+      </div>
+
+      <div class="form-group">
+        <label for="feeTextArea">Fee Waiver Reasoning</label>
+        <textarea class="form-control" id="feeTextArea"
+                  required [(ngModel)]="model.feeTextArea" name="feeTextArea">
+      </textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="fee">Fee</label>
+        <input type="number" class="form-control" id="fee"
+               required
+               [(ngModel)]="model.fee" name="fee">
+      </div>
+
+      <div class="form-group">
+        <label for="yourName">Your Name</label>
+        <input type="text" class="form-control" id="yourName"
+               required
+               [(ngModel)]="model.yourName" name="yourName">
+      </div>
+
+      <div class="form-group">
+        <label for="yourAddress">Your Address</label>
+        <input type="text" class="form-control" id="yourAddress"
+               required
+               [(ngModel)]="model.yourAddress" name="yourAddress">
+      </div>
+
+      <div class="form-group">
+        <label for="yourPhone">Your Phone Number</label>
+        <input type="text" class="form-control" id="yourPhone"
+               required
+               [(ngModel)]="model.yourPhone" name="yourPhone">
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!letterForm.form.valid">Submit</button>
+
+    </form>
+  </div>
+
+  <div [hidden]="!submitted">
+    <h2>Your Letter:</h2>
+    <h4>Copy and paste wherever you prefer to save/send letter!</h4>
+    <div>{{ model.name }}</div>
+    <div>{{ model.agency }}</div>
+    <div>{{ model.contactAddress }}</div>
+    <p>This is a request for records under the Missouri Sunshine Law, Chapter 610, Revised Statutes of Missouri. I request that you make available to me all records that relate to {{ model.requestTextArea }}</p>
+    <p>I request that the records responsive to my request be copied and sent to me electronically at the following email address:</p>
+    <div>{{ model.yourEmail }}</div><br />
+    <p>I request that all fees for locating and copying the records be waived. The information I obtain through this request will be used to {{ model.feeTextArea }}</p>
+    <p>Please let me know in advance of any search or copying if the fees will exceed ${{ model.fee}}.</p>
+    <p>If portions of the requested records are closed, please segregate the closed portions and provide me with the rest of the records.</p>
+    <p>Sincerely,</p>
+    <div>{{ model.yourName }}</div>
+    <div>{{ model.yourAddress }}</div>
+    <div>{{ model.yourPhone }}</div>
+    <div>{{ model.yourEmail }}</div>
+  </div>
+
 </body>
 </html>
